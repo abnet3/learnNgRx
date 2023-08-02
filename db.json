@@ -1,0 +1,24 @@
+{
+  "blogs": [
+    {
+      "id": 1,
+      "title": "Angular NgRx",
+      "description": "Learn ngRx with Angular"
+    },
+    {
+      "id": 2,
+      "title": "React NgRx",
+      "description": "Learn ngRx with React'"
+    },
+    {
+      "id": 3,
+      "title": "Vue NgRx",
+      "description": "Learn ngRx with Vue'"
+    },
+    {
+      "id": 6,
+      "title": "revise man",
+      "description": "mtsm mtsm"
+    }
+  ]
+}

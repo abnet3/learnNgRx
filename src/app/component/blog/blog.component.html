@@ -1,0 +1,30 @@
+<div style="text-align: center;" >
+
+<div *ngIf="!blogInfo.ErrorMessage">
+<h1>Welcome to Epic Tech blogs</h1>
+
+ <div *ngIf="!blogInfo.bloglists.length">
+  <h1>No Blogs</h1>
+ </div>
+<button mat-raised-button color="primary" (click)="AddBlog()">Add blog</button>
+<mat-card *ngFor="let blog of blogInfo.bloglists">
+  <mat-card-header>
+    <mat-card-title>{{blog.title}} </mat-card-title>
+    <div style="text-align: right; width: 100%;">
+      <button mat-raised-button color="primary" (click)="onEdit(blog.id)"><mat-icon fontIcon="edit"></mat-icon></button>
+      <button mat-raised-button color="primary" (click)="onDelete(blog.id)"><mat-icon fontIcon="delete"></mat-icon></button>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    {{blog.description}} </mat-card-content>
+</mat-card>
+</div>
+  <mat-card *ngIf="blogInfo.ErrorMessage">
+      <mat-card-header>
+          <mat-card-title>Error Occured</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p style="color: red;">{{blogInfo.ErrorMessage}}</p>
+      </mat-card-content>
+  </mat-card>
+</div>
