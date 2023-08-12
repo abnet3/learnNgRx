@@ -25,7 +25,7 @@ export class BlogEffects {
     private _snackBar: MatSnackBar
   ) {}
 
-  _addblog = createEffect(() =>
+  _loadBlog = createEffect(() =>
     this.action$.pipe(
       ofType(LOAD_BLOG),
       exhaustMap((action) => {

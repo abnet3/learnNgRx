@@ -7,6 +7,6 @@ import { Blogs } from './Blog.model';
 // ];
 
 export const blogInitialState: Blogs = {
-  bloglists: [  ],
+  bloglists: [],
   ErrorMessage: ''
 };

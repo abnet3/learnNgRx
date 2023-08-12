@@ -9,6 +9,8 @@ import {
 
 import { initialState } from './counter.state';
 
+export const COUNTER_FEATURE_KEY = 'counter';
+
 const _counterReducer = createReducer(
   initialState,
   on(increment, (state) => {

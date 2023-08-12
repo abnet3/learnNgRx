@@ -1,0 +1,9 @@
+.mat-dialog-actions {
+  &[align='end'] {
+    justify-content: flex-end;
+  }
+
+  &[align='center'] {
+    justify-content: center;
+  }
+}

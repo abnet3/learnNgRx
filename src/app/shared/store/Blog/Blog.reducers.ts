@@ -3,6 +3,8 @@ import { createReducer, on } from '@ngrx/store';
 
 import { blogInitialState } from './Blog.state';
 
+export const BLOG_FEATURE_KEY = 'blog';
+
 export const _blogReducer = createReducer(
   blogInitialState,
 

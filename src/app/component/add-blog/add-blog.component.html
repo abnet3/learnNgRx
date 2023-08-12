@@ -9,6 +9,9 @@
         <input matInput formControlName="title">
       </mat-form-field>
 
+      <div *ngIf="blogForm.get('title')?.touched && !blogForm.get('title')?.valid">
+       <p style="color: red;">*error man</p>
+      </div>
       <mat-form-field>
         <mat-label>Description</mat-label>
         <textarea matInput formControlName="description"></textarea>
