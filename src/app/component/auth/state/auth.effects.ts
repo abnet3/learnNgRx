@@ -1,26 +1,42 @@
-import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, concatMap } from 'rxjs/operators';
-import { Observable, EMPTY, of } from 'rxjs';
-import { AuthActions } from './auth.actions';
+import { EMPTY, Observable, of } from 'rxjs';
+import { LOGIN_SUCCESS, loginStart, loginSucess } from './auth.actions';
+import {
+  catchError,
+  concatMap,
+  exhaustMap,
+  map,
+  mergeMap,
+} from 'rxjs/operators';
 
+import { AppStateModel } from 'src/app/shared/store/Global/appstate.model';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { Injectable } from '@angular/core';
+import { LoginModel } from './auth.model';
+import { Store } from '@ngrx/store';
+import { setLoadingSpinner } from 'src/app/shared/store/Global/App.Action';
 
 @Injectable()
 export class AuthEffects {
+  constructor(private actions$: Actions, private authService: AuthService, private store: Store<AppStateModel>) {}
 
-  loginAuths$ = createEffect(() => {
+  login$ = createEffect(() => {
     return this.actions$.pipe(
+      ofType(loginStart),
+      exhaustMap((action) => {
+        let email = action.loginData.email;
+        let password = action.loginData.password;
 
-      ofType(AuthActions.loginAuths),
-      concatMap(() =>
-        /** An EMPTY observable only emits completion. Replace with your own observable API request */
-        EMPTY.pipe(
-          map(data => AuthActions.loginAuthsSuccess({ data })),
-          catchError(error => of(AuthActions.loginAuthsFailure({ error }))))
-      )
+      return this.authService.login(email, password).pipe(
+        map((data) => {
+          console.log(data);
+
+          this.store.dispatch(setLoadingSpinner({status: false}));
+          const user = this.authService.formatUser(data);
+          return loginSucess({user: user});
+        })
+      );
+      })
     );
   });
-
-
-  constructor(private actions$: Actions) {}
 }
