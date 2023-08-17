@@ -29,7 +29,6 @@ constructor(private store: Store<AppStateModel>){}
       password: this.form.value.password as string
    }
 
-        this.store.dispatch(setLoadingSpinner({status: true}));
         this.store.dispatch(loginStart({loginData: logininfo}));
 
     }

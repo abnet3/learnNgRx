@@ -1,6 +1,4 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Store, StoreModule } from '@ngrx/store';
-import { authFeatureKey, authReducer } from './state/auth.reducer';
 
 import { AuthEffects } from './state/auth.effects';
 import { AuthRoutingModule } from './auth-routing.module';
@@ -9,10 +7,16 @@ import { EffectsModule } from '@ngrx/effects';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from 'src/app/Material.Module';
 import { NgModule } from '@angular/core';
+import { SignupComponent } from './signup/signup.component';
+
+// import { Store, StoreModule } from '@ngrx/store';
+// import { authFeatureKey, authReducer } from './state/auth.reducer';
+
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     CommonModule,
@@ -20,8 +24,10 @@ import { NgModule } from '@angular/core';
     FormsModule,
     ReactiveFormsModule,
     AuthRoutingModule,
-    StoreModule.forFeature(authFeatureKey, authReducer),
-    EffectsModule.forFeature([AuthEffects])
+    // StoreModule.forFeature(authFeatureKey, authReducer),
+    // EffectsModule.forFeature([AuthEffects])
+    EffectsModule.forFeature()
+
   ]
 })
 export class AuthModule { }

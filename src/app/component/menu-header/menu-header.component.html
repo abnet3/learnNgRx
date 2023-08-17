@@ -1,12 +1,27 @@
-<mat-toolbar color="primary" class="mat-elevation-z8">
+<!-- <mat-toolbar color="primary" class="mat-elevation-z8">
     <span>Learn NgRx</span>
     <button mat-button routerLink="">Home</button>
     <button mat-button routerLink="counter">Counter</button>
     <button mat-button routerLink="blog">Blog</button>
 
     <div mat-dialog-actions align="end">
-      <button mat-button routerLink="auth">Login</button>
-    <button mat-button routerLink="blog">Sign Up</button>
-    </div>
+      <button mat-button routerLink="auth" *ngIf="!(isAuthenticated$ | async)">Login</button>
+    <button mat-button routerLink="auth/login">Sign Up</button>
+    <button mat-button *ngIf="isAuthenticated$ | async">Logout</button>
 
+    </div>
+</mat-toolbar> -->
+
+<!-- Toolbar -->
+<mat-toolbar color="primary" class="app-header">
+  <div><a href="https://www.positronx.io" target="_blank" class="positronx">PositronX.io</a>
+    <a mat-button routerLink="" >Home</a>
+    <a mat-button routerLink="counter" >Counter</a>
+    <a mat-button routerLink="blog" >Blog</a>
+  </div>
+  <span class="nav-tool-items">
+    <button mat-button routerLink="auth/login" *ngIf="!(isAuthenticated$ | async)">Login</button>
+    <button mat-button routerLink="auth/signup" *ngIf="!(isAuthenticated$ | async)">Sign Up</button>
+    <button mat-button *ngIf="isAuthenticated$ | async" (click)="onLogout($event)">Logout</button>
+  </span>
 </mat-toolbar>
